@@ -2,6 +2,8 @@
 //  Copyright © FINN.no AS, Inc. All rights reserved.
 //
 
+#if os(iOS)
+
 import UIKit
 
 extension UICollectionView {
@@ -22,3 +24,5 @@ extension UICollectionView {
         })
     }
 }
+
+#endif

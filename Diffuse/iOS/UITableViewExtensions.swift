@@ -2,6 +2,8 @@
 //  Copyright © FINN.no AS, Inc. All rights reserved.
 //
 
+#if os(iOS)
+
 import UIKit
 
 extension UITableView {
@@ -35,3 +37,5 @@ extension UITableView {
         }
     }
 }
+
+#endif

@@ -6,9 +6,9 @@ import XCTest
 @testable import Diffuse
 
 final class ElementTests: XCTestCase {
-    private let elementA = Element(value: 1, index: 0)
-    private let elementB = Element(value: 1, index: 1)
-    private let elementC = Element(value: 2, index: 0)
+    private let elementA = Diffuse.Element(value: 1, index: 0)
+    private let elementB = Diffuse.Element(value: 1, index: 1)
+    private let elementC = Diffuse.Element(value: 2, index: 0)
 
     func testHashValue() {
         XCTAssertEqual(elementA.hashValue, elementB.hashValue)

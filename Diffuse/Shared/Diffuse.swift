@@ -4,9 +4,7 @@
 
 import Foundation
 
-public struct Diffuse {
-    private init() {}
-
+public enum Diffuse {
     /// Use this method to find the difference between two collections. Accepts a closure to compare elements
     /// from each collection.
     ///
@@ -18,6 +16,7 @@ public struct Diffuse {
     ///   - new: The updated collection.
     ///   - comparator: A closure that takes one element from each collection as its arguments and returns a
     ///     Boolean value indicating whether the elements are a match.
+    @inlinable
     public static func diff<T: Equatable>(old: [T], new: [T], comparator: (T, T) -> Bool) -> CollectionChanges {
         let oldEnumerated = old.enumerated()
         let updatedEnumerated = new.enumerated()
@@ -79,6 +78,7 @@ public struct Diffuse {
     ///     - old: Array containing elements pre update
     ///     - new: Array containing elementes post update
     ///
+    @inlinable
     public static func diff<T: Hashable>(old: [T], new: [T]) -> CollectionChanges {
         // 1 - We can return early in some cases
         if old.isEmpty { return CollectionChanges(inserted: Array(0..<new.count)) }

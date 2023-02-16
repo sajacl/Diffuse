@@ -12,16 +12,22 @@ extension UICollectionView {
         section: Int = 0,
         updateDataSource: () -> Void
     ) {
-        guard changes.count != 0 else { return }
+        guard changes.hasChanges else {
+            // no op
+            return
+        }
+
         let indexPaths = IndexPathResult(changes: changes, section: section)
 
         performBatchUpdates({
             updateDataSource()
+
             insertItems(at: indexPaths.inserted)
             reloadItems(at: indexPaths.updated)
             deleteItems(at: indexPaths.removed)
-            indexPaths.moved.forEach { (fromRow, toRow) in
-                moveItem(at: fromRow, to: toRow)
+
+            indexPaths.moved.forEach { update in
+                moveItem(at: update.from, to: update.to)
             }
         })
     }

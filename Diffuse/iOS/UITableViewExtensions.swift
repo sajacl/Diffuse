@@ -12,7 +12,11 @@ extension UITableView {
         section: Int = 0,
         updateDataSource: () -> Void
     ) {
-        guard changes.count != 0 else { return }
+        guard changes.hasChanges else {
+            // no op
+            return
+        }
+
         let indexPaths = IndexPathResult(changes: changes, section: section)
         let animation = UITableView.RowAnimation.automatic
 
@@ -22,8 +26,9 @@ extension UITableView {
                 insertRows(at: indexPaths.inserted, with: animation)
                 reloadRows(at: indexPaths.updated, with: animation)
                 deleteRows(at: indexPaths.removed, with: animation)
-                indexPaths.moved.forEach { (fromRow, toRow) in
-                    moveRow(at: fromRow, to: toRow)
+
+                indexPaths.moved.forEach { update in
+                    moveRow(at: update.from, to: update.to)
                 }
             })
         } else {
@@ -32,8 +37,9 @@ extension UITableView {
             insertRows(at: indexPaths.inserted, with: animation)
             reloadRows(at: indexPaths.updated, with: animation)
             deleteRows(at: indexPaths.removed, with: animation)
-            indexPaths.moved.forEach { (fromRow, toRow) in
-                moveRow(at: fromRow, to: toRow)
+
+            indexPaths.moved.forEach { update in
+                moveRow(at: update.from, to: update.to)
             }
             endUpdates()
         }

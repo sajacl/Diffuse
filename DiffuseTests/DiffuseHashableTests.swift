@@ -17,7 +17,7 @@ final class DiffuseHashableTests: XCTestCase {
         let changes = Diffuse.diff(old: old, new: new)
 
         // Both collections are empty.
-        XCTAssertEqual(0, changes.count)
+        XCTAssertEqual(0, changes.sumCount)
     }
 
     // MARK: - Comparing primitives
@@ -28,7 +28,7 @@ final class DiffuseHashableTests: XCTestCase {
         let changes = Diffuse.diff(old: old, new: new)
 
         // Only insertions has occured.
-        XCTAssertEqual(3, changes.count)
+        XCTAssertEqual(3, changes.sumCount)
         XCTAssertEqual(3, changes.inserted.count)
     }
 
@@ -38,7 +38,7 @@ final class DiffuseHashableTests: XCTestCase {
         let changes = Diffuse.diff(old: old, new: new)
 
         // Only removals has occured.
-        XCTAssertEqual(3, changes.count)
+        XCTAssertEqual(3, changes.sumCount)
         XCTAssertEqual(3, changes.removed.count)
     }
 
@@ -49,7 +49,7 @@ final class DiffuseHashableTests: XCTestCase {
 
         // Number 4 is inserted at index `1`, which means two items (number 2 and 3) have been pushed/moved.
         // The total number of changes should equal 4.
-        XCTAssertEqual(4, changes.count)
+        XCTAssertEqual(4, changes.sumCount)
         XCTAssertEqual(2, changes.inserted.count)
         XCTAssertEqual(2, changes.moved.count)
     }
@@ -61,7 +61,7 @@ final class DiffuseHashableTests: XCTestCase {
 
         // Two items are removed, but that also means two items (number 3 and 5) have been pulled/moved.
         // The total number of changes should equal 4.
-        XCTAssertEqual(4, changes.count)
+        XCTAssertEqual(4, changes.sumCount)
         XCTAssertEqual(2, changes.removed.count)
         XCTAssertEqual(2, changes.moved.count)
     }
@@ -72,7 +72,7 @@ final class DiffuseHashableTests: XCTestCase {
         let changes = Diffuse.diff(old: old, new: new)
 
         // The only item in its original position is the number 3. The rest have been moved.
-        XCTAssertEqual(4, changes.count)
+        XCTAssertEqual(4, changes.sumCount)
         XCTAssertEqual(4, changes.moved.count)
     }
 
@@ -82,7 +82,7 @@ final class DiffuseHashableTests: XCTestCase {
         let changes = Diffuse.diff(old: old, new: new)
 
         // The only item has been updated
-        XCTAssertEqual(1, changes.count)
+        XCTAssertEqual(1, changes.sumCount)
         XCTAssertEqual(1, changes.updated.count)
     }
 
@@ -98,7 +98,7 @@ final class DiffuseHashableTests: XCTestCase {
         let new = [1, 3, 4, 2, 5]
         let changes = Diffuse.diff(old: old, new: new)
 
-        XCTAssertEqual(6, changes.count)
+        XCTAssertEqual(6, changes.sumCount)
         XCTAssertEqual(2, changes.moved.count)
         XCTAssertEqual(3, changes.inserted.count)
         XCTAssertEqual(1, changes.removed.count)
@@ -120,7 +120,7 @@ final class DiffuseHashableTests: XCTestCase {
 
         // `E` is inserted at index `1`, which means three items (`B`, `C` and `D`) have been pushed/moved.
         // The total number of changes should equal 5.
-        XCTAssertEqual(5, changes.count)
+        XCTAssertEqual(5, changes.sumCount)
         XCTAssertEqual(2, changes.inserted.count)
         XCTAssertEqual(3, changes.moved.count)
     }
@@ -138,7 +138,7 @@ final class DiffuseHashableTests: XCTestCase {
 
         // Two objects (`B` and `C`) are removed, which also means one item (`D`) have been pulled/moved.
         // The total number of changes should equal 3.
-        XCTAssertEqual(3, changes.count)
+        XCTAssertEqual(3, changes.sumCount)
         XCTAssertEqual(2, changes.removed.count)
         XCTAssertEqual(1, changes.moved.count)
     }
@@ -155,7 +155,7 @@ final class DiffuseHashableTests: XCTestCase {
         let changes = Diffuse.diff(old: old, new: new)
 
         XCTAssertEqual(2, changes.updated.count)
-        XCTAssertEqual(2, changes.count)
+        XCTAssertEqual(2, changes.sumCount)
     }
 
     func testMultipleOperationsWithCustomType() {
@@ -190,7 +190,7 @@ final class DiffuseHashableTests: XCTestCase {
         let new = [objectB, objectD, objectE, objectC, objectF]
         let changes = Diffuse.diff(old: old, new: new)
 
-        XCTAssertEqual(5, changes.count)
+        XCTAssertEqual(5, changes.sumCount)
         XCTAssertEqual(1, changes.moved.count)
         XCTAssertEqual(2, changes.inserted.count)
         XCTAssertEqual(2, changes.updated.count)

@@ -7,9 +7,11 @@
 import UIKit
 
 extension UICollectionView {
-    public final func reload(with changes: CollectionChanges,
-                       section: Int = 0,
-                       updateDataSource: () -> Void) {
+    public final func reload(
+        with changes: CollectionChanges,
+        section: Int = 0,
+        updateDataSource: () -> Void
+    ) {
         guard changes.count != 0 else { return }
         let indexPaths = IndexPathResult(changes: changes, section: section)
 

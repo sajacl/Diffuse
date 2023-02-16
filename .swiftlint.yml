@@ -1,6 +1,7 @@
 force_cast: error
 force_try: error
 force_unwrapping: error
+
 type_body_length: 250
 file_length: 500
 type_name:
@@ -27,4 +28,6 @@ included:
   - DiffuseTests
 analyzer_rules:
   - unused_import
-  - unused_private_declaration
+
+opt_in_rules:
+ - force_unwrapping

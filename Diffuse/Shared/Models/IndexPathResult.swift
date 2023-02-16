@@ -4,19 +4,19 @@
 
 import Foundation
 
-struct IndexPathResult {
+internal struct IndexPathResult {
     private let section: Int
     private let changes: CollectionChanges
 
-    public var inserted: [IndexPath] {
+    var inserted: [IndexPath] {
         return changes.inserted.map { IndexPath(item: $0, section: section) }
     }
 
-    public var removed: [IndexPath] {
+    var removed: [IndexPath] {
         return changes.removed.map { IndexPath(item: $0, section: section) }
     }
 
-    public var moved: [Move<IndexPath>] {
+    var moved: [Move<IndexPath>] {
         return changes.moved.map { move in
             let from = IndexPath(item: move.from, section: section)
             let to = IndexPath(item: move.to, section: section)
@@ -24,7 +24,7 @@ struct IndexPathResult {
         }
     }
 
-    public var updated: [IndexPath] {
+    var updated: [IndexPath] {
         return changes.updated.map { IndexPath(item: $0, section: section) }
     }
 

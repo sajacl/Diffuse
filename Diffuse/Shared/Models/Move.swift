@@ -3,10 +3,10 @@
 //
 
 public struct Move<T: Hashable>: Hashable {
-    public let from: Int
-    public let to: Int
-    
-    public init(from: Int, to: Int) {
+    public let from: T
+    public let to: T
+
+    public init(from: T, to: T) {
         self.from = from
         self.to = to
     }

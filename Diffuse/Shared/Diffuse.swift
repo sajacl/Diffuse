@@ -126,7 +126,7 @@ public enum Diffuse {
                 // 'element' has only moved if the index has changed
                 if movedElement.index != i {
                     // The indeces are different so 'element' has moved
-                    moved.append((from: movedElement.index, to: element.index))
+                    moved.append(Move(from: movedElement.index, to: element.index))
                 }
             } else {
                 // If 'element' is not in 'oldSet' is has been inserted into the 'new' array

@@ -7,7 +7,7 @@
 import UIKit
 
 extension UITableView {
-    public func reload(with changes: CollectionChanges,
+    public final func reload(with changes: CollectionChanges,
                        section: Int = 0,
                        updateDataSource: () -> Void) {
         guard changes.count != 0 else { return }

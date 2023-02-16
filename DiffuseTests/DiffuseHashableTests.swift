@@ -3,9 +3,9 @@
 //
 
 import XCTest
-@testable import Diffuse
+@testable import enum Diffuse.Diffuse
 
-class DiffuseHashableTests: XCTestCase {
+final class DiffuseHashableTests: XCTestCase {
     struct Object: Hashable {
         let objId: Int
         var name: String

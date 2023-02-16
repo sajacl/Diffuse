@@ -3,9 +3,9 @@
 //
 
 import XCTest
-@testable import Diffuse
+@testable import enum Diffuse.Diffuse
 
-class DiffuseComparatorTests: XCTestCase {
+final class DiffuseComparatorTests: XCTestCase {
     struct Object: Equatable {
         let objId: Int
         var name: String

@@ -2,4 +2,12 @@
 //  Copyright © FINN.no AS, Inc. All rights reserved.
 //
 
-public typealias Move<T> = (from: T, to: T)
+public struct Move<T: Hashable>: Hashable {
+    public let from: Int
+    public let to: Int
+    
+    public init(from: Int, to: Int) {
+        self.from = from
+        self.to = to
+    }
+}
